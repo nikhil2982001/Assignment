@@ -14,31 +14,41 @@ function displayData(data, page) {
         tableBody.appendChild(row);
     }
 }
-function createButtons(data) {
+
+function createPaginationButtons(data) {
     const totalPages = Math.ceil(data.length / itemsPerPage);
     const paging = document.getElementById('pagination');
-  paging.innerHTML = '';
-    if (currentPage > 1) {
-        const prevButton = document.createElement('li');
-        prevButton.innerHTML = `<a href="#" onclick="changePage(${currentPage - 1})">Previous</a>`;
-        paging.appendChild(prevButton);
-    }
+    const prevButton = document.createElement('li');
+    prevButton.innerHTML = `<a href="#" onclick="prevPage()">Previous</a>`;
+    paging.appendChild(prevButton);
     for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement('li');
         button.innerHTML = `<a href="#" onclick="changePage(${i})">${i}</a>`;
         paging.appendChild(button);
     }
-    if (currentPage < totalPages) {
-        const nextButton = document.createElement('li');
-        nextButton.innerHTML = `<a href="#" onclick="changePage(${currentPage + 1})">Next</a>`;
-        paging.appendChild(nextButton);
-    }
+    const nextButton = document.createElement('li');
+    nextButton.innerHTML = `<a href="#" onclick="nextPage()">Next</a>`;
+    paging.appendChild(nextButton);
 }
 function changePage(page) {
     currentPage = page;
-    displayData(Data, currentPage);
+    displayData(data, currentPage);
+}
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        displayData(data, currentPage);
+    }
+}
+function nextPage() {
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        displayData(data, currentPage);
+    }
 }
 displayData(Data, currentPage);
-createButtons(Data);
+createPaginationButtons(data);
+
 
 
