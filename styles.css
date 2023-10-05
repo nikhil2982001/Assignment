@@ -1,0 +1,61 @@
+table {
+    border-collapse: separate;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid lightgoldenrodyellow;
+    padding: 10px;
+    text-align: left;
+    font-weight: 500;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    transition: background-color 0.5s;
+}
+tr:nth-child(even):hover{
+    background-color: blueviolet;
+}
+
+th {
+    background-color:lightseagreen;
+    color: black;
+}
+tr:hover{
+    background-color: green;
+    color: aquamarine;
+
+    
+}
+
+#container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+
+}
+
+#pagination li {
+    display: flex;
+    margin: 0 5px;
+}
+
+#pagination li a {
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color:darkolivegreen;
+    color: white;
+    border-radius: 5px;
+}
+
+#pagination li a:hover {
+    background-color:red;
+    cursor: pointer;
+}
+
