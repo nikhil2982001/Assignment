@@ -14,14 +14,30 @@ function displayData(data, page) {
         tableBody.appendChild(row);
     }
 }
-function createPaginationButtons(data) {
+function createButtons(data) {
     const totalPages = Math.ceil(data.length / itemsPerPage);
-    const paginationContainer = document.getElementById('pagination');
+    const page = document.getElementById('pagination');
+  page.innerHTML = '';
 
+    // Add "Previous" button if not on the first page
+    if (currentPage > 1) {
+        const prevButton = document.createElement('li');
+        prevButton.innerHTML = `<a href="#" onclick="changePage(${currentPage - 1})">Previous</a>`;
+        page.appendChild(prevButton);
+    }
+
+    // Add page buttons
     for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement('li');
         button.innerHTML = `<a href="#" onclick="changePage(${i})">${i}</a>`;
-        paginationContainer.appendChild(button);
+        page.appendChild(button);
+    }
+
+    // Add "Next" button if not on the last page
+    if (currentPage < totalPages) {
+        const nextButton = document.createElement('li');
+        nextButton.innerHTML = `<a href="#" onclick="changePage(${currentPage + 1})">Next</a>`;
+        page.appendChild(nextButton);
     }
 }
 function changePage(page) {
@@ -29,5 +45,5 @@ function changePage(page) {
     displayData(Data, currentPage);
 }
 displayData(Data, currentPage);
-createPaginationButtons(Data);
+createButtons(Data);
 
